@@ -1,2 +1,2 @@
 #! groovy
-echo "test"
+docker run hello-world
