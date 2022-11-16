@@ -1,4 +1,4 @@
 #! groovy
-docker.withTool(docker) {
+docker.withTool('docker') {
     sh """docker run hello-world"""
 }
