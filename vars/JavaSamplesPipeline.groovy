@@ -28,7 +28,8 @@ def call(body) {
                 steps {
                     MPLModule('Maven Build', [
                         maven: [
-                            tool_version: 'maven'
+                            tool_version: 'maven',
+                            jdk: MPL.config.jdk
                         ]
                     ])
                 }

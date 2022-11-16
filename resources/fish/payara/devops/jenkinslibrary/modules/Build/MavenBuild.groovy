@@ -1,5 +1,4 @@
 #! groovy
-withMaven(jdk: CFG.jdk, maven: 'maven') {
-    sh """mvn -version"""
+withMaven(jdk: CFG.maven.jdk, maven: CFG.maven.tool_version) {
     sh """mvn -B -V clean install"""
 }
