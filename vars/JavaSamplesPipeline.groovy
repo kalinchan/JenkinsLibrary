@@ -18,7 +18,7 @@ def call(body) {
 
     pipeline {
         node {
-            git '...'
+            git CFG.git.url
             def myEnv = docker.build 'java-samples:snapshot'
             mvEnv.inside{
                 sh """mvn clean install"""
