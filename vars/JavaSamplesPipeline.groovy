@@ -18,7 +18,7 @@ def call(body) {
 
     pipeline {
         node {
-            git url: MPL.config.'git.url', branch: MPL.config.'git.branch'
+            git url: MPL.config.'git.url', branch: MPL.config.'git.branch', credentialsId: MPL.config.git.credentials
             def myEnv = docker.build 'java-samples:snapshot'
             mvEnv.inside{
                 sh """mvn clean install"""
