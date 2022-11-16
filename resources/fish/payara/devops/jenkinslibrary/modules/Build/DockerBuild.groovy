@@ -1,2 +1,4 @@
 #! groovy
-sh """docker build ."""
+withTool(docker){
+    sh """docker build ."""
+}
