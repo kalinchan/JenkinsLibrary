@@ -1,11 +1,14 @@
 #! groovy
-if ( fileExists('Dockerfile') )
+if ( fileExists('Dockerfile') ) {
     echo "Dockerfile found"
     MPLModule('Docker Build', CFG)
-else 
+} else {
     echo "No Dockerfile found in "
-if ( fileExists('pom.xml') )
+}
+        
+if ( fileExists('pom.xml') ) {
     echo "Pom file found"
     MPLModule('Maven Build', CFG)
-else
+} else {
     echo "No maven file found"
+}
