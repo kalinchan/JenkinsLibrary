@@ -19,21 +19,17 @@ def call(body) {
     pipeline {
         node {
             stage ('Checkout') {
-                steps {
-                    MPLModule()
-                }
+                MPLModule()
             }
             def myEnv = docker.build 'java-samples:snapshot'
             mvEnv.inside{
                 stage ('Build') {
-                    steps {
-                        MPLModule('Maven Build', [
-                                maven: [
-                                        tool_version: 'maven',
-                                        jdk: MPL.config.jdk
-                                ]
-                        ])
-                    }
+                    MPLModule('Maven Build', [
+                            maven: [
+                                    tool_version: 'maven',
+                                    jdk: MPL.config.jdk
+                            ]
+                    ])
                 }
             }
         }
