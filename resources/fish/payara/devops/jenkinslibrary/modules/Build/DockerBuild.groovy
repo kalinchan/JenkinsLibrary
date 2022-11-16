@@ -1,4 +1,2 @@
 #! groovy
-docker(docker){
-    sh """docker build ."""
-}
+echo "test"
