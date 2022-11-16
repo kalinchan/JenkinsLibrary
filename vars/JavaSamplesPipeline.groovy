@@ -34,11 +34,5 @@ def call(body) {
                 }
             }
         }
-        post {
-            success {
-                MPLPostStepsRun('success') {
-                }
-            }
-        }
     }
 }

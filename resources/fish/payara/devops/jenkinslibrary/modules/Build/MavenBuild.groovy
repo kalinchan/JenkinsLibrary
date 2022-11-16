@@ -1,6 +1,6 @@
 #! groovy
-echo "Overriden Maven Build Start - Run the original one"
-echo "${JAVA_HOME}"
-MPLModule('Maven Build', CFG)
-
-echo "Execution of the overriden Maven Build is done"
+withEnv(["PATH+MAVEN=${tool(CFG.'maven.tool_version' ?: 'Maven 3')}/bin"]) {
+    def settings = CFG.'maven.settings_path' ? "-s '${CFG.'maven.settings_path'}'" : ''
+    sh """mvn -version"""
+    sh """mvn -B ${settings} -DargLine='-Xmx1024m -XX:MaxPermSize=1024m' clean install"""
+}
