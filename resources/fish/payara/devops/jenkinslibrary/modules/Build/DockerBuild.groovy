@@ -1,2 +1,2 @@
 #! groovy
-docker run hello-world
+sh """docker run hello-world"""
