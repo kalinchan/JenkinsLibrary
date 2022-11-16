@@ -17,7 +17,12 @@ def call(body) {
         stages {
             stage ('Checkout') {
                 steps {
-                    MPLModule()
+                    MPLModule('Checkout', [
+                        git = [
+                            url: 'https://github.com/kalinchan/Java-Samples',
+                            branch: 'master'
+                        ]
+                    ])
                 }
             }
             stage ('Build') {
@@ -32,7 +37,8 @@ def call(body) {
         }
         post {
             success {
-                MPLPostStepsRun('success')
+                MPLPostStepsRun('success') {
+                }
             }
         }
     }
