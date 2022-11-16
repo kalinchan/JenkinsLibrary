@@ -17,27 +17,25 @@ def call(body) {
     ])
 
     pipeline {
-        node {
-            git url: MPL.config.'git.url', branch: MPL.config.'git.branch', credentialsId: MPL.config.git.credentials
-            def myEnv = docker.build 'java-samples:snapshot'
-            mvEnv.inside{
-                sh """mvn clean install"""
-            }
-        }
         stages {
-            stage ('Checkout') {
-                steps {
-                    MPLModule()
+            node {
+                stage ('Checkout') {
+                    steps {
+                        MPLModule()
+                    }
                 }
-            }
-            stage ('Build') {
-                steps {
-                    MPLModule('Maven Build', [
-                        maven: [
-                            tool_version: 'maven',
-                            jdk: MPL.config.jdk
-                        ]
-                    ])
+                def myEnv = docker.build 'java-samples:snapshot'
+                mvEnv.inside{
+                    stage ('Build') {
+                        steps {
+                            MPLModule('Maven Build', [
+                                    maven: [
+                                            tool_version: 'maven',
+                                            jdk: MPL.config.jdk
+                                    ]
+                            ])
+                        }
+                    }
                 }
             }
         }
