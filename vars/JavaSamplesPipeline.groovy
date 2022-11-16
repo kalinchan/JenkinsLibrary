@@ -9,6 +9,10 @@ def call(body) {
         modules: [
             Checkout: [:],
             Build: [:]
+        ],
+        git: [
+            url: 'https://github.com/kalinchan/Java-Samples',
+            branch: 'master'
         ]
     ])
 
@@ -17,12 +21,7 @@ def call(body) {
         stages {
             stage ('Checkout') {
                 steps {
-                    MPLModule('Checkout', [
-                        git = [
-                            url: 'https://github.com/kalinchan/Java-Samples',
-                            branch: 'master'
-                        ]
-                    ])
+                    MPLModule()
                 }
             }
             stage ('Build') {
