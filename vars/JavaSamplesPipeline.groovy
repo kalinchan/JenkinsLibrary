@@ -22,7 +22,11 @@ def call(body) {
             }
             stage ('Build') {
                 steps {
-                    MPLModule('Maven Build')
+                    MPLModule('Maven Build', [
+                        maven: [
+                            tool_version: 'maven'
+                        ]
+                    ])
                 }
             }
         }
