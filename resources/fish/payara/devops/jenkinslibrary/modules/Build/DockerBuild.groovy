@@ -1,0 +1,2 @@
+#! groovy
+sh """docker build ."""
