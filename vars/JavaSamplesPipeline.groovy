@@ -17,7 +17,13 @@ def call(body) {
     ])
 
     pipeline {
-        agent any
+        node {
+            git '...'
+            def myEnv = docker.build 'java-samples:snapshot'
+            mvEnv.inside{
+                sh """mvn clean install"""
+            }
+        }
         stages {
             stage ('Checkout') {
                 steps {
