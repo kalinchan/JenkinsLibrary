@@ -8,7 +8,8 @@ def call(body) {
         jdk: 'zulu-8',
         modules: [
             Checkout: [:],
-            Build: [:]
+            Build: [:],
+            PushDocker[:]
         ],
         git: [
             url: 'https://github.com/kalinchan/Java-Samples',
@@ -32,6 +33,12 @@ def call(body) {
                             jdk: MPL.config.jdk
                         ]
                     ])
+                }
+            }
+            stage ('PushDocker'){
+                when {expression { return fileExists('Dockerfile') }}
+                steps {
+                    MPLModule();
                 }
             }
         }
