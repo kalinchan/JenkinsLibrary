@@ -9,7 +9,7 @@ def call(body) {
         modules: [
             Checkout: [:],
             Build: [:],
-            PushDocker[:]
+            PushDocker: [:]
         ],
         git: [
             url: 'https://github.com/kalinchan/Java-Samples',
